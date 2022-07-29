@@ -10,6 +10,9 @@ pip install pyenchant
 ```
 dnf install python3-enchant
 ```
+## 安装
+- 在modules下新建一个wordle文件夹，将本仓库所有文件放进去
+- 在config/\_\_bot\_\_.py最底下的MODELUS_ON里添加'wordle'
 
 ## 用法
 

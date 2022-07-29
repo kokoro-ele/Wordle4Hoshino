@@ -75,6 +75,14 @@ class Wordle(object):
 
         for i in range(self.rows):
             word_temp = self.word_lower  # 临时变量
+            word_temp_exist = self.word_lower
+            word_temp_exist = [i for i in word_temp_exist]
+            for j in range(self.length):
+                letter = self.guessed_words[i][j] if len(self.guessed_words) > i else ""
+                if letter:
+                    if letter == self.word_lower[j]:
+                        word_temp_exist[j] = '_'
+            word_temp_exist = ''.join(word_temp_exist)
             for j in range(self.length):
                 letter = self.guessed_words[i][j] if len(self.guessed_words) > i else ""
                 if letter:
@@ -82,8 +90,8 @@ class Wordle(object):
                         color = self.correct_color
 
                     elif (
-                        letter in word_temp
-                        and self.guessed_words[i][word_temp.find(letter)] != letter
+                        letter in word_temp_exist
+                        and self.guessed_words[i][word_temp_exist.find(letter)] != letter
                     ):
                         """
                         一个字母的黄色和绿色数量与答案中的数量保持一致
@@ -91,7 +99,7 @@ class Wordle(object):
                         结果为apple的第一个p是黄色，第二个p是灰色
                         代表答案中只有一个p，且不在第二个位置
                         """
-                        word_temp = word_temp.replace(letter, "_", 1)
+                        word_temp_exist = word_temp_exist.replace(letter, "_", 1)
                         color = self.exist_color
                     else:
                         color = self.wrong_color

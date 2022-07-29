@@ -142,7 +142,7 @@ async def _(bot, ev):
 	if not text:
 		await bot.finish(ev, "单词呢？单词呢？单词捏？", at_sender=True)
 	elif not is_word(text):
-		await bot.finish(ev, "字母都不会的打咯", at_sender=True)
+		await bot.finish(ev, "字母都不会的打咯(3<=长度<=8且均为字母才合法)", at_sender=True)
 	else:
 		word = text
 		await handle_wordle(bot, ev, [word])
@@ -223,6 +223,7 @@ async def handle_wordle(bot, ev,argv: List[str]):
 			await send("支持的词典：" + ", ".join(dic_list))
 
 		word, meaning = random_word(options.dic, options.length)
+		print(type(word),word)
 		game = Wordle(word, meaning)
 		games[cid] = game
 		set_timeout(bot,ev,cid)

@@ -8,8 +8,6 @@ from asyncio import TimerHandle
 from tracemalloc import stop
 from typing import Dict, List, Optional, NoReturn
 
-from sqlalchemy import true
-
 import hoshino
 from hoshino import Service
 from hoshino.typing import CQEvent
